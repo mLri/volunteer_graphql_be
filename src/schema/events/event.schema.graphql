@@ -1,0 +1,76 @@
+scalar Date
+scalar Upload
+scalar JSON
+
+type image {
+  mimetype: String
+  name: String
+  img_url: String
+}
+
+type timestamp {
+  created_at: String
+  updated_at: String
+}
+
+type date_of_month {
+  date: Date
+  dayoff_status: Boolean
+  handle_click: Boolean
+  amont: Int
+}
+
+type calendar {
+  date: Date
+  date_of_month: [date_of_month]
+}
+
+type Event {
+  _id: String
+  name: String
+  detail: String
+  start_date: Date
+  end_date: Date
+  unit_per_day: Int
+  image: image
+  calendars: [calendar]
+  success_status: String
+  delete_status: Boolean
+  timestamp: timestamp
+}
+
+type Query {
+  events(
+    limit: Int
+    sorted_by: String
+    sorted_order: String
+    page: Int
+    search: String
+    success_status: String
+  ) : [Event]
+  events_total(search: String, success_status: String) : Int
+  event( event_id: String ) : Event
+}
+
+type Mutation {
+  createEvent(
+    name: String
+    detail: String
+    start_date: Date
+    end_date: Date
+    unit_per_day: Int
+    file: Upload
+    calendars: [JSON]
+  ) : Event
+  updateEvent(
+    event_id: String
+    name: String
+    detail: String
+    start_date: Date
+    end_date: Date
+    unit_per_day: Int
+    file: Upload
+    calendars: [JSON]
+  ) : Event
+  deleteEvent(event_id: String) : Event
+}
