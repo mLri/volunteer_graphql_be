@@ -1,26 +1,27 @@
 const jwt = require('jsonwebtoken')
 
 /* include helpers */
-const { handleError } = require('./handle_error.helper')
-const statusError = require('./status_error.helper')
+const { errorName } = require("./handle_error_gql.helper");
+
+
 
 module.exports.checkAuth = (req, res, next) => {
   try {
 
     const auth_token = req.headers['authorization']
-    if (!auth_token) throw statusError.unauthorized
+    if (!auth_token) throw new Error(errorName.unauthorized)
 
     const split_auth_token = auth_token.split(' ')
     const bearer = split_auth_token[0]
     const token = split_auth_token[1]
 
-    if (!bearer || bearer !== 'Bearer') throw statusError.forbidden
+    if (!bearer || bearer !== 'Bearer') throw new Error(errorName.forbidden)
 
     const verified = jwt.verify(token, process.env.TOKEN_SECRET)
     req.user = verified
     next()
   } catch (error) {
-    handleError(error, res)
+    throw error
   }
 }
 

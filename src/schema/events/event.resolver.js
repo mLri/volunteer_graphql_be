@@ -62,11 +62,9 @@ module.exports = {
 
         /* manage sort */
         const order = sorted_order === "asc" ? 1 : -1;
-
         if (sorted_by === "created_at") {
           sort = { "timestamp.created_at": order };
         }
-
         if (sorted_by === "end_date") sort = { end_date: order };
 
         if (search)
@@ -250,7 +248,7 @@ module.exports = {
         find_event.delete_status = true;
         await find_event.save();
 
-        return find_event
+        return find_event;
       } catch (error) {
         throw error;
       }

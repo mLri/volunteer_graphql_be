@@ -30,7 +30,7 @@ exports.errorType = {
     statusCode: 403,
   },
   duplicate: {
-    message: 'user has already exists!',
+    message: 'Duplicate data!',
     status: 400
   }
 };

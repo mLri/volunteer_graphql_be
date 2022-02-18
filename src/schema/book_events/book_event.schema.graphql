@@ -1,0 +1,49 @@
+scalar Date
+
+type BookEvent {
+  _id: String
+  event_id: String
+  employee_id: String
+  prefix: String
+  firstname: String
+  lastname: String
+  institution: String
+  tel: String
+  date_time: Date
+  timestamp: timestamp
+}
+
+type timestamp {
+  created_at: String
+  updated_at: String
+}
+
+type Query {
+  bookEvents(event_id: String) : [BookEvent]
+  bookEventsTotal(event_id: String) : Int
+  bookEvent(book_event_id: String!) : BookEvent
+}
+
+type Mutation {
+  createBookEvent(
+    event_id: String
+    employee_id: String
+    prefix: String
+    firstname: String
+    lastname: String
+    institution: String
+    tel: String
+    date_time: Date
+  ) : BookEvent
+  updateBookEvent(
+    book_event_id: String
+    employee_id: String
+    prefix: String
+    firstname: String
+    lastname: String
+    institution: String
+    tel: String
+    date_time: Date
+  ) : BookEvent
+  deleteBookEvent(book_event_id: String) : BookEvent
+}
