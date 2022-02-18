@@ -26,17 +26,17 @@ type Query {
 
 type Mutation {
   createBookEvent(
-    event_id: String
-    employee_id: String
-    prefix: String
-    firstname: String
-    lastname: String
-    institution: String
-    tel: String
-    date_time: Date
+    event_id: String!
+    employee_id: String!
+    prefix: String!
+    firstname: String!
+    lastname: String!
+    institution: String!
+    tel: String!
+    date_time: Date!
   ) : BookEvent
   updateBookEvent(
-    book_event_id: String
+    book_event_id: String!
     employee_id: String
     prefix: String
     firstname: String
@@ -45,5 +45,5 @@ type Mutation {
     tel: String
     date_time: Date
   ) : BookEvent
-  deleteBookEvent(book_event_id: String) : BookEvent
+  deleteBookEvent(book_event_id: String!) : BookEvent
 }

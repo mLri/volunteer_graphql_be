@@ -12,10 +12,16 @@ const {
 } = require("../../helpers/token.helper");
 const { errorName } = require("../../helpers/handle_error_gql.helper");
 
+/* include validate schema */
+const { signupSchema, signinSchema } = require("../../validate/user.validate");
+
 module.exports = {
   Query: {
     signin: async (parent, args) => {
       try {
+        /* validate schema */
+        await signinSchema.validate(args);
+
         const { username, password } = args;
 
         /* check user */
@@ -57,7 +63,6 @@ module.exports = {
     },
     refresh_token: async (parent, args) => {
       try {
-        console.log(args);
         let { refresh_token } = args;
         if (!refresh_token) throw new Error(errorName.bad_request);
 
@@ -94,6 +99,9 @@ module.exports = {
   Mutation: {
     signup: async (parent, args) => {
       try {
+        /* validate schema */
+        await signupSchema.validate(args);
+
         const {
           employee_id,
           prefix,
@@ -104,7 +112,7 @@ module.exports = {
           username,
           password,
           email,
-          role = "admin",
+          role = "user",
         } = args;
 
         /* check exists user */

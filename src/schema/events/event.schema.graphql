@@ -49,21 +49,21 @@ type Query {
     success_status: String
   ) : [Event]
   events_total(search: String, success_status: String) : Int
-  event( event_id: String ) : Event
+  event( event_id: String! ) : Event
 }
 
 type Mutation {
   createEvent(
-    name: String
-    detail: String
-    start_date: Date
-    end_date: Date
+    name: String!
+    detail: String!
+    start_date: Date!
+    end_date: Date!
     unit_per_day: Int
     file: Upload
-    calendars: [JSON]
+    calendars: [JSON!]!
   ) : Event
   updateEvent(
-    event_id: String
+    event_id: String!
     name: String
     detail: String
     start_date: Date
@@ -72,5 +72,5 @@ type Mutation {
     file: Upload
     calendars: [JSON]
   ) : Event
-  deleteEvent(event_id: String) : Event
+  deleteEvent(event_id: String!) : Event
 }

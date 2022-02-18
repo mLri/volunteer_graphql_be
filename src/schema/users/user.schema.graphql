@@ -37,20 +37,20 @@ type Signup {
 }
 
 type Query {
-  signin(username: String!, password: String!) : User
-  refresh_token(refresh_token: String!) : User
+  signin(username: String!, password: String!): User
+  refresh_token(refresh_token: String!): User
 }
 
 type Mutation {
   signup(
-    employee_id: String
-    prefix: String
-    first_name: String
-    last_name: String
-    institution: String
-    tel: String
-    username: String
-    password: String
-    email: String
-  ) : User
+    employee_id: String!
+    prefix: String!
+    first_name: String!
+    last_name: String!
+    institution: String!
+    tel: String!
+    username: String!
+    password: String!
+    email: String!
+  ): User
 }

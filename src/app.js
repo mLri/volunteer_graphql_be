@@ -29,7 +29,7 @@ app.use(
   graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
   graphqlHTTP({
     schema,
-    graphiql: true,
+    graphiql: false,
     customFormatErrorFn: (err) => {
       const error = getError(err.message);
       const err_rs = error
