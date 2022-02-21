@@ -15,6 +15,7 @@
     "@graphql-tools/load-files": "^6.5.3",
     "@graphql-tools/schema": "^8.3.1",
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "express-graphql": "^0.12.0",

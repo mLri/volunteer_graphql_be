@@ -2,6 +2,7 @@ const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const mongoose = require("mongoose");
 const { graphqlUploadExpress } = require("graphql-upload");
+const cors = require('cors')
 
 const { getError } = require("./helpers/handle_error_gql.helper");
 
@@ -23,6 +24,8 @@ const schema = require("./Schema");
 
 const app = express();
 const port = process.env.PORT || 3001;
+
+app.use(cors())
 
 app.use(
   "/graphql",
